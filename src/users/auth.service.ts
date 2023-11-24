@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Request } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterUserDto } from './dtos/registerUser.dto';
 import { UsersService } from './users.service';
@@ -70,11 +70,15 @@ export class AuthService {
         secret: process.env.JWT_REFRESH_TOKEN_SECRET,
         expiresIn: '1h',
     })
-    await this.userService.setCurrentRefreshToken(refresh_token, userLogin.id);
+    // await this.userService.setCurrentRefreshToken(refresh_token, userLogin.id);
     return {
       message: 'user has been login successfully',
       access_token,
       refresh_token
     };
+  }
+
+  getCurrent(@Request() req) {
+    return req.currentUser;
   }
 }

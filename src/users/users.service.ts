@@ -48,22 +48,22 @@ export class UsersService {
         return this.userRepo.remove(user);
     }
 
-    async setCurrentRefreshToken(refreshToken: string, id: number) {
-        const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
-        await this.userRepo.update(id, {
-            currentHashedRefreshToken
-        });
-    }
+    // async setCurrentRefreshToken(refreshToken: string, id: number) {
+    //     const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    //     await this.userRepo.update(id, {
+    //         currentHashedRefreshToken
+    //     });
+    // }
 
-    async getUserIfRefreshTokenMatches(refreshToken: string, id: number) {
-        const user = await this.findById(id);
-        const isRefreshTokenMatching = await bcrypt.compare(
-            refreshToken,
-            user.currentHashedRefreshToken
-        );
+    // async getUserIfRefreshTokenMatches(refreshToken: string, id: number) {
+    //     const user = await this.findById(id);
+    //     const isRefreshTokenMatching = await bcrypt.compare(
+    //         refreshToken,
+    //         user.currentHashedRefreshToken
+    //     );
 
-        if(isRefreshTokenMatching) {
-            return user;
-        }
-    }
+    //     if(isRefreshTokenMatching) {
+    //         return user;
+    //     }
+    // }
 }

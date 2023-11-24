@@ -39,6 +39,8 @@ export class AuthGuard implements CanActivate {
       }
       //4. Assign user to request object
       request.currentUser = userLogin;
+      console.log("hai")
+      // console.log(userLogin)
     } catch (error) {
         throw new ForbiddenException('Invalid token or expired');
     }
